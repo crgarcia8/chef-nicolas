@@ -43,7 +43,17 @@ function App() {
 
   const videosFiltrados = videos.filter((video) => {
     const texto = limpiarHashtagsFinales(video.text);
-    const coincideTexto = texto.toLowerCase().includes(searchTerm.toLowerCase());
+    const coincideTexto = texto.toLowerCase()
+      .replace("á", "a")
+      .replace("é", "e")
+      .replace("í", "i")
+      .replace("ó", "o")
+      .replace("ú", "u")
+      .includes(searchTerm.toLowerCase().replace("á", "a")
+        .replace("é", "e")
+        .replace("í", "i")
+        .replace("ó", "o")
+        .replace("ú", "u"));
     if (selectedTag === 'Todos') return coincideTexto && true;
 
     if (selectedTag === 'Receta en casa') {
@@ -108,8 +118,8 @@ function App() {
         ))}
       </div> */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-6">
-        {videos.map((video) => (
+      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+        {videosFiltrados.map((video) => (
           <a
             href={video.webVideoUrl}
             target="_blank"
@@ -122,11 +132,11 @@ function App() {
                 className="h-[300px] sm:h-[200px] md:h-[250px] object-cover object-top rounded-t-xl"
               />
               <div className="p-4 flex flex-col flex-grow">
-                <p className="text-sm text-gray-700 mb-2">
-                  {limpiarHashtagsFinales(video.text)}
-                </p>
                 <p className="text-xs text-gray-500 mt-auto">
                   {formatearFecha(video.createTime)}
+                </p><br />
+                <p className="text-sm text-gray-700 mb-2">
+                  {limpiarHashtagsFinales(video.text)}
                 </p>
               </div>
             </div>
