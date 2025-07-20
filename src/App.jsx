@@ -57,7 +57,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <h1 className="text-2xl font-bold mb-6 text-center">Videos del Chef Nicolás Prieto</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 auto-rows-fr">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 auto-rows-fr">
         {videos.map((video) => (
           <div key={video.id} className="flex flex-col rounded-xl shadow-md overflow-hidden bg-white">
             <img
