@@ -59,21 +59,28 @@ function App() {
       <h1 className="text-2xl font-bold mb-6 text-center">Videos del Chef Nicolás Prieto</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 auto-rows-fr">
         {videos.map((video) => (
-          <div key={video.id} className="flex flex-col rounded-xl shadow-md overflow-hidden bg-white">
-            <img
-              src={video.videoMeta.originalCoverUrl}
-              alt="Miniatura del video"
-              className="h-[400px] sm:h-[300px] md:h-[350px] object-cover object-top rounded-t-xl"
-            />
-            <div className="p-4 flex flex-col flex-grow">
-              <p className="text-sm text-gray-700 mb-2">
-                {limpiarHashtagsFinales(video.text)}
-              </p>
-              <p className="text-xs text-gray-500 mt-auto">
-                {formatearFecha(video.createTime)}
-              </p>
+          <a
+            href={video.webVideoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transform transition duration-300 hover:scale-[1.02] hover:shadow-xl rounded-xl"
+          >
+            <div key={video.id} className="flex flex-col rounded-xl shadow-md overflow-hidden bg-white">
+              <img
+                src={video.videoMeta.originalCoverUrl}
+                alt="Miniatura del video"
+                className="h-[400px] sm:h-[300px] md:h-[350px] object-cover object-top rounded-t-xl"
+              />
+              <div className="p-4 flex flex-col flex-grow">
+                <p className="text-sm text-gray-700 mb-2">
+                  {limpiarHashtagsFinales(video.text)}
+                </p>
+                <p className="text-xs text-gray-500 mt-auto">
+                  {formatearFecha(video.createTime)}
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
